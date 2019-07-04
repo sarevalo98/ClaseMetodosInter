@@ -1,7 +1,7 @@
 import numpy as np 
 import matplotlib.pylab as plt
 
-datos= np.genfromtxt("datosderiv.dat")
+datos= np.genfromtxt("datosderiv.dat"delimiter=";")
 Xcos=datos[0,:]
 Yder=datos[1,:]
 plt.figure()
