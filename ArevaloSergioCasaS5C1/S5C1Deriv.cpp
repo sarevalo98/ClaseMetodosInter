@@ -4,12 +4,15 @@ using namespace std;
 
 int derivada(float x0[], int valor, double dx)
     {
+    float *p;
     float arr3[valor];
+    p=arr3;
     for(int i=0; i<=valor;i++)
         {
             arr3[i]= (x0[i+1]-x0[i-1])/(2*dx);
         cout<< x0[i]<<";"<<arr3[i]<<endl;
         }
+    cout<<"La direccion del arreglo calculado es: "<< p<<endl;
     return 0;
     }
  
@@ -18,9 +21,9 @@ int main()
     int puntos;
     int a;
     int b;
-    cout<<"Ingrese el numero de puntos: ";cin>>puntos;
-    cout<<"Ingrese el primer valor del intervalo: ";cin>>a;
-    cout<<"Ingrese el ultimo valor del intervalo: ";cin>>b;
+    cout<<"Puntos: ";cin>>puntos;
+    cout<<"a: ";cin>>a;
+    cout<<"b: ";cin>>b;
     float * arr;
     arr=new float [puntos];
     arr[0]=a;
