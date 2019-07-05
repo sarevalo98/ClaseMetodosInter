@@ -34,6 +34,7 @@ int main()
     arry[0]=1;
     double c=arrx[0];
     double d=arry[0];
+    //Euler
     for(int i=1;i<=puntos-1;i++)
         {
         c=c+h;
@@ -51,7 +52,31 @@ int main()
         outfile <<arrx[i]<<";"<<arry[i]<< endl;
         }
     outfile.close();
-    
-    
+    //Runge-Kutta
+    double k_1;
+    double k_2;
+    double k_3;
+    double k_4;
+    double prom;
+    float arry2[puntos];
+    arry2[0]=1;
+    double e=arry2[0];
+    for(int i=1;i<=puntos;i++)
+        {
+        k_1= h* funcion(arry2[i-1]);
+        k_2= h* funcion(arry2[i-1]+0.5*k_1);
+        k_3= h* funcion(arry2[i-1]+0.5*k_2);
+        k_4= h* funcion(arry2[i-1]+k_3);
+        prom=(1.0/6.0)*(k_1+(2.0*k_2)+(2.0*k_3)+k_4);
+        e=e+prom;
+        arry2[i]=e;
+        }
+    ofstream outfile2;
+    outfile2.open("runge.dat");
+    for(int i=0;i<=puntos;i++)
+        {
+        outfile2 <<arrx[i]<<";"<<arry2[i]<< endl;
+        }
+    outfile2.close();
     return 0;
     }
