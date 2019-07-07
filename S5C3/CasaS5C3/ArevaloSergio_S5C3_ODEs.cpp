@@ -1,63 +1,65 @@
 #include <fstream>
 #include<iostream>
 using namespace std;
-
-
-
-double fun2(double x0)
-    {
-    double m=2.0;
-    double k=300.0;
-    double j= -(k*x0)/m;
-    return j;
-    }
-double fun(double v0)
+double funcion(double x0,double t0,double v0)
     {
     return v0;
     }
-
-double runge(double h0, float x0[], int num)
+double veloci(double x0,double t0,double v0)
     {
-    float arrx[num];
-    arrx[0]=0.1;
+    double k=300;
+    double m=2.0;
+    double j=(-k*x0)/m;
+    return j;
+    }
+double runge(double a0, double b0, double h0, int num)
+    {
+    double arrt[num];
+    arrt[0]=a0;
     double k1;
     double k2;
     double k3;
     double k4;
     double prom;
-    for(int i=1;i<=num;i++)
+    double arrx[num];
+    arrx[0]=0.1;
+    double k1v;
+    double k2v;
+    double k3v;
+    double k4v;
+    double promv;
+    double arrv[num];
+    arrv[0]=0.0;
+    for(int i=1; i<=num;i++)
         {
-        k1=h0*fun(arrx[i-1]);
-        k2=h0*fun(arrx[i-1]+0.5*k1);
-        k3=h0*fun(arrx[i-1]+0.5*k2);
-        k4=h0*fun(arrx[i-1]+k3);
-        prom=(1.0/6.0)*(k1+(2.0*k2)+(2.0*k3)+k4);
+        k1=h0 * funcion(arrx[i-1],arrt[i-1],arrv[i-1]);
+        k1v=h0 * veloci(arrx[i-1],arrt[i-1],arrv[i-1]);
+        k2=h0 * funcion(arrx[i-1]+0.5*k1,arrt[i-1]+0.5*k1,arrv[i-1]+0.5*k1);
+        k2v=h0 * veloci(arrx[i-1]+0.5*k1v,arrt[i-1]+0.5*k1v,arrv[i-1]+0.5*k1v);
+        k3=h0 * funcion(arrx[i-1]+0.5*k2,arrv[i-1]+0.5*k2,arrv[i-1]+0.5*k2);
+        k3v=h0 * veloci(arrx[i-1]+0.5*k2v,arrv[i-1]+0.5*k2v,arrv[i-1]+0.5*k2v);
+        k4=h0 * funcion(arrx[i-1]+k3,arrt[i-1]+k3,arrv[i-1]+k3);
+        k4v=h0 * veloci(arrx[i-1]+k3v,arrt[i-1]+k3v,arrv[i-1]+k3v);
+        prom=(1.0/6.0)*(k1+2.0*k2+2.0*k3+k4);
+        promv=(1.0/6.0)*(k1v+2.0*k2v+2.0*k3v+k4v);
+        arrt[i]=arrt[i-1]+h0;
         arrx[i]=arrx[i-1]+prom;
+        arrv[i]=arrv[i-1]+promv;
         }
-     ofstream outfile2;
-     outfile2.open("runge.dat");
-     for(int i=0;i<=num;i++)
-         {
-         outfile2 <<x0[i]<<";"<<arrx[i]<< endl;
-         }
-    outfile2.close();
-    return 0;
+    ofstream outfile;
+    outfile.open("runge.dat");
+    for(int i=0;i<=num;i++)
+        {
+        outfile <<arrt[i]<<";"<<arrx[i]<<";"<<arrv[i]<< endl;
+        }
+    outfile.close();
     }
-
 int main()
     {
-    
-    int a=0;
-    int b=5;
+    double a=0.0;
+    double b=5.0;
     double h=0.01;
     int puntos=(b-a)/h;
-    float arrt[puntos];
-    arrt[0]=a;
-    arrt[puntos]=b;
-    for(int i=1;i<=puntos-1;i++)
-        {
-        arrt[i]= arrt[i-1]+h;
-        }
-    runge(h,arrt,puntos);
+    runge(a,b,h,puntos);
     return 0;
     }
