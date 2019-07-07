@@ -53,6 +53,10 @@ double runge(double a0, double b0, double h0, int num)
         outfile <<arrt[i]<<";"<<arrx[i]<<";"<<arrv[i]<< endl;
         }
     outfile.close();
+    for(int i=0;i<=num;i++)
+        {
+        cout <<arrt[i]<<";"<<arrv[i]<<";"<<arrx[i]<< endl;
+        }
     }
 int main()
     {
