@@ -38,14 +38,10 @@ int main()
     outfile.close();
     double arrp[N];
     for(int i=0; i<=N;i++)
-        {
-        arrp[i]=arrv[i];
-        }
-    for(int i=0; i<=N;i++)
-        {
+        {arrp[i]=arrv[i];
         for(int q=1; q<=N-1;q++)
             {
-            arrv[q]=arrp[i]-arrp[i]*dt/dx*(arrp[i]-arrp[i-1]);
+            arrv[q]=arrp[i]-v*dt/dx*(arrp[i]-arrp[i-1]);
             }
         }
     ofstream outfile2;
