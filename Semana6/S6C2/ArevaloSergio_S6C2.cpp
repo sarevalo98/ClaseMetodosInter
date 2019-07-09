@@ -10,15 +10,13 @@ int main()
     double dx=0.005;
     double c=300.0;
     double dt= (dx*0.5)/c;
-    int N= (b-a)/dt;
+    int N= 200;
     double cond= c*dt/dx;
     double arrt[N];
     arrt[0]=a;
     arrt[N]=b;
     double arrAi[N];
     double arrAf[N];
-    arrAi[0]=0.0;
-    arrAi[N]=0.0;
     arrAi[N/2]=0.01;
     double arrx[N];
     arrx[0]=0.0;
@@ -34,13 +32,13 @@ int main()
         {
         arrAf[i]=0;
         }
-    for(int i=1;i<N/2;i++)
+    for(int i=0;i<N/2;i++)
         {
         arrAi[i]=(2*0.01/L)*(i*dx);
         }
-    for(int i=N/2;i<=N-1;i++)
+    for(int i=N/2;i<=N;i++)
         {
-        arrAi[i]= (-2*0.01/L)*(i*dx)+(2*0.01);
+        arrAi[i]= (-2*0.01/L)*i*dx+(2*0.01);
         }
     ofstream outfile;
     outfile.open("datos.dat");
