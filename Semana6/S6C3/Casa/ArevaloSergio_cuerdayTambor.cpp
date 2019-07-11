@@ -94,7 +94,6 @@ int main()
         {
         arrAi2[i]= (-2*0.01/L)*i*dx+(2*0.01);
         }
-    //Agrego a un archivo .dat las posiciones X y las condiciones iniciales.
     ofstream outfile3;
     outfile3.open("datos3.dat");
     for(int i=0; i<=N;i++)
@@ -103,7 +102,11 @@ int main()
         }
     outfile3.close();
     //Primer paso...
-    for(int i=0;i<=N;i++)
+    for(int i=N/2;i<=N;i++)
+        {
+         arrAf2[i]=arrAi2[i];
+        }
+    for(int i=0;i<N/2;i++)
         {
          arrAf2[i]=(((c*c)*(dt*dt))/(2*dx*dx))*(arrAi2[i+1]+arrAi2[i-1]-(2*arrAi2[i]))+arrAi2[i];
         }
