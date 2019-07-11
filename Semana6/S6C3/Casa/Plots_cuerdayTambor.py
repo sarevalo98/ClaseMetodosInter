@@ -28,3 +28,17 @@ plt.title("Extremo suelto")
 plt.xlabel("X")
 plt.ylabel("A")
 plt.savefig("ExtremosFijoYsuelto.png")
+
+Datos5= np.genfromtxt("datos5.dat",delimiter=";")
+x5=Datos5[:,0]
+a5=Datos5[:,1]
+Datos6= np.genfromtxt("datos6.dat",delimiter=";")
+x6=Datos6[:,0]
+a6=Datos6[:,1]
+plt.figure()
+plt.plot(x5,a5,c="green")
+plt.plot(x6,a6,c="green")
+plt.title("SEN()")
+plt.xlabel("X")
+plt.ylabel("A")
+plt.savefig("FuncionSen.png")

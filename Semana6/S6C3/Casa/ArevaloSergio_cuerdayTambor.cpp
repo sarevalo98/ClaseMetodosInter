@@ -122,7 +122,7 @@ int main()
             {
              arrf2[i]=arrAf2[i-1];
             }
-        for(int i=1;i<N/2;i++)
+        for(int i=1;i<=N/2;i++)
             {
              arrf2[i]=(((c*c)*(dt*dt))/(dx*dx))*(arrAf2[i+1]+arrAf2[i-1]-(2*arrAf2[i]))-arrAi2[i]+(2*arrAf2[i]);
             if(conta2%20==0)
@@ -140,30 +140,40 @@ int main()
      }
     outfile4.close();
     //Punto3
+    ofstream outfile5;
+    outfile5.open("datos5.dat");
     double Xs[N];
+    double A1[N];
     for(int i=0;i<=N;i++)
             {
             Xs[i]=0;
+            outfile5<<arrx[i]<<";"<<Xs[i]<<endl;
             }
-    int cuenta=0
+    outfile5.close();
+    ofstream outfile6;
+    outfile6.open("datos6.dat");
+    int cuenta=0;
     for(int k=0;k<=N;k++)
         {
         cuenta = cuenta+1;
-        for(int i=1;i<N/2;i++)
+        for(int i=0;i<=N;i++)
             {
-             Xs[N]=;
+            A1[i]=A1[i-1];
+            }
+        for(int i=0;i<N;i++)
+            {
+             A1[N]=0.01*sin((3.0*c*i*M_PI)/L);
             if(conta2%10==0)
             {for(int i=0;i<=N;i++)
                 {
-            outfile4<<arrx[i]<<";"<<arrf2[i]<<endl;
+            outfile6<<arrx[i]<<";"<<A1[i]<<endl;
                 }
             }
             }
-        for(int i=1;i<=N;i++)
-            {
-            arrAi2[i]=arrAf2[i];
-            arrAf2[i]=arrf2[i];
-            }
-     }
+         }
+        outfile6.close();
+    //Condiciones iniciales
+    
+    
     return 0;
     }
