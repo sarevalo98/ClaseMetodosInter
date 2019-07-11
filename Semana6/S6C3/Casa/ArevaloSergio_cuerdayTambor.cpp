@@ -1,5 +1,6 @@
 #include <fstream>
 #include<iostream>
+#include <cmath>
 using namespace std;
 
 int main()
@@ -81,7 +82,7 @@ int main()
     outfile2.close();
     
     
-    //Extremo fijo y libre....
+    //Extremo fijo y libre(Punto2)
     double arrAi2[N];
     double arrAf2[N];
     arrAi2[N/2]=0.01;
@@ -138,7 +139,31 @@ int main()
             }
      }
     outfile4.close();
-    
-    
+    //Punto3
+    double Xs[N];
+    for(int i=0;i<=N;i++)
+            {
+            Xs[i]=0;
+            }
+    int cuenta=0
+    for(int k=0;k<=N;k++)
+        {
+        cuenta = cuenta+1;
+        for(int i=1;i<N/2;i++)
+            {
+             Xs[N]=;
+            if(conta2%10==0)
+            {for(int i=0;i<=N;i++)
+                {
+            outfile4<<arrx[i]<<";"<<arrf2[i]<<endl;
+                }
+            }
+            }
+        for(int i=1;i<=N;i++)
+            {
+            arrAi2[i]=arrAf2[i];
+            arrAf2[i]=arrf2[i];
+            }
+     }
     return 0;
     }
